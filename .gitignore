@@ -1,0 +1,27 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python (api)
+api/venv/
+api/__pycache__/
+api/*.pyc
+api/.env
+
+# Database / local data
+api/*.db
+api/*.sqlite
+api/*.sqlite3
+
+# Node / Expo (ui)
+ui/node_modules/
+ui/.expo/
+ui/dist/
+ui/web-build/
+ui/.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+

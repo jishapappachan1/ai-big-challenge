@@ -1,0 +1,92 @@
+[
+  {
+    "id": "q1",
+    "question": "What does a neural network do?",
+    "options": {"A": "Process sequential operations like a CPU", "B": "Mimic the human brain to learn patterns", "C": "Connect directly to the internet via hardware", "D": "Compress data for storage"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q2",
+    "question": "Which of the following is NOT an AI component?",
+    "options": {"A": "Model Weights", "B": "Activation Function", "C": "Loss Function", "D": "Hardware Compiler"},
+    "correct_option": "D"
+  },
+  {
+    "id": "q3",
+    "question": "What is Natural Language Processing (NLP)?",
+    "options": {"A": "A method to compress text files", "B": "A technology allowing computers to understand human language", "C": "A database querying language", "D": "A system for translating hardware signals"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q4",
+    "question": "What is the primary goal of Supervised Learning?",
+    "options": {"A": "Learn without any labels", "B": "Map input to output based on example pairs", "C": "Group similar data points together", "D": "Maximize a reward signal"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q5",
+    "question": "Which algorithm is commonly used for image classification?",
+    "options": {"A": "Linear Regression", "B": "K-Means Clustering", "C": "Convolutional Neural Networks (CNN)", "D": "Dijkstra's Algorithm"},
+    "correct_option": "C"
+  },
+  {
+    "id": "q6",
+    "question": "In AI, what does 'Overfitting' mean?",
+    "options": {"A": "The model is too simple for the data", "B": "The model performs well on training data but poorly on new data", "C": "The model takes too long to train", "D": "The model has too few parameters"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q7",
+    "question": "Who is often called the father of Artificial Intelligence?",
+    "options": {"A": "Alan Turing", "B": "John McCarthy", "C": "Geoffrey Hinton", "D": "Ada Lovelace"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q8",
+    "question": "Which Python library is most popular for Deep Learning?",
+    "options": {"A": "Flask", "B": "Requests", "C": "PyTorch", "D": "BeautifulSoup"},
+    "correct_option": "C"
+  },
+  {
+    "id": "q9",
+    "question": "What is a 'Turing Test' used for?",
+    "options": {"A": "Testing computer hardware speed", "B": "Measuring a machine's ability to exhibit intelligent behavior", "C": "Debugging software code", "D": "Encrypting data transmissions"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q10",
+    "question": "What does 'GAN' stand for in Machine Learning?",
+    "options": {"A": "General AI Network", "B": "Generative Adversarial Network", "C": "Gradient Ascent Node", "0": "Global Area Network"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q11",
+    "question": "What is 'Reinforcement Learning' primarily based on?",
+    "options": {"A": "Pre-labeled datasets", "B": "Trial and error with rewards/penalties", "C": "Clustering unorganized data", "D": "Fixed rules defined by programmers"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q12",
+    "question": "What is the purpose of an 'Activation Function'?",
+    "options": {"A": "To turn off the computer after training", "B": "To introduce non-linearity into the model", "C": "To store the model on disk", "D": "To increase the learning rate"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q13",
+    "question": "Which of these is a generative AI model?",
+    "options": {"A": "GPT-4", "B": "XGBoost", "C": "SVM", "D": "Random Forest"},
+    "correct_option": "A"
+  },
+  {
+    "id": "q14",
+    "question": "What is 'Data Augmentation' used for?",
+    "options": {"A": "Deleting unnecessary data", "B": "Increasing data variety by modifying existing samples", "C": "Encrypting sensitive datasets", "D": "Speeding up internet connections"},
+    "correct_option": "B"
+  },
+  {
+    "id": "q15",
+    "question": "In LLMs, what is 'Temperature' used for?",
+    "options": {"A": "Controlling the physical heat of servers", "B": "Adjusting the randomness and creativity of outputs", "C": "Measuring the training speed", "D": "Limiting the number of users"},
+    "correct_option": "B"
+  }
+]
