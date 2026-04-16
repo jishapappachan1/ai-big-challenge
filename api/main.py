@@ -32,7 +32,7 @@ with open(os.path.join(os.path.dirname(__file__), "questions.json"), "r") as f:
     QUESTIONS = json.load(f)
 
 MAX_QUIZ_ATTEMPTS = 10
-QUIZ_QUESTION_COUNT = 2
+QUIZ_QUESTION_COUNT = 10
 
 def _issue_otp_for_email(email: str, db: Session) -> tuple[str, bool]:
     code = "".join(random.choices(string.digits, k=6))
