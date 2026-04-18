@@ -32,7 +32,7 @@ with open(os.path.join(os.path.dirname(__file__), "questions.json"), "r") as f:
     QUESTIONS = json.load(f)
 
 MAX_QUIZ_ATTEMPTS = 10
-QUIZ_QUESTION_COUNT = 10
+QUIZ_QUESTION_COUNT = 1
 
 def _issue_otp_for_email(email: str, db: Session) -> tuple[str, bool]:
     code = "".join(random.choices(string.digits, k=6))
@@ -280,6 +280,17 @@ def submit_response(submission: schemas.CreativeSubmit, current_user: models.Use
                 total_score=scores.get("total_score", 0),
             )
         )
+    db.add(
+        models.CreativeSubmission(
+            user_id=current_user.id,
+            content=submission.response,
+            relevance=scores.get("relevance", 0),
+            creativity=scores.get("creativity", 0),
+            clarity=scores.get("clarity", 0),
+            impact=scores.get("impact", 0),
+            total_score=scores.get("total_score", 0),
+        )
+    )
     db.commit()
 
     for event in audit_events:
@@ -302,14 +313,46 @@ def submit_response(submission: schemas.CreativeSubmit, current_user: models.Use
     }
 
 
+@app.get("/my-creative-submissions")
+def get_my_creative_submissions(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """All scored creative snapshots for this user (newest first)."""
+    rows = (
+        db.query(models.CreativeSubmission)
+        .filter(models.CreativeSubmission.user_id == current_user.id)
+        .order_by(models.CreativeSubmission.created_at.desc())
+        .all()
+    )
+    return {
+        "submissions": [
+            {
+                "id": r.id,
+                "content": r.content,
+                "relevance": r.relevance,
+                "creativity": r.creativity,
+                "clarity": r.clarity,
+                "impact": r.impact,
+                "total_score": r.total_score,
+                "created_at": r.created_at.isoformat() if r.created_at else None,
+            }
+            for r in rows
+        ],
+        "count": len(rows),
+    }
+
+
 @app.get("/my-creative-result")
 def get_my_creative_result(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Scores for the logged-in user only (not shared device cache)."""
     row = db.query(models.Response).filter(models.Response.user_id == current_user.id).first()
     if not row:
         return {"submitted": False}
+    total_entries = db.query(models.Response).count()
+    rank = db.query(models.Response).filter(models.Response.total_score > row.total_score).count() + 1
     return {
         "submitted": True,
+        "content": row.content,
+        "rank": rank,
+        "total_entries": total_entries,
         "scores": {
             "relevance": row.relevance,
             "creativity": row.creativity,
@@ -317,6 +360,28 @@ def get_my_creative_result(current_user: models.User = Depends(get_current_user)
             "impact": row.impact,
             "total_score": row.total_score,
         },
+    }
+
+
+@app.get("/my-evaluation-audit")
+def get_my_evaluation_audit(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Latest evaluation pipeline events for the current user (for results UI)."""
+    logs = (
+        db.query(models.EvaluationAudit)
+        .filter(models.EvaluationAudit.user_id == current_user.id)
+        .order_by(models.EvaluationAudit.created_at.asc())
+        .all()
+    )
+    return {
+        "events": [
+            {
+                "stage": log.stage,
+                "agent": log.agent,
+                "tool_name": log.tool_name,
+                "created_at": log.created_at.isoformat() if log.created_at else None,
+            }
+            for log in logs
+        ],
     }
 
 

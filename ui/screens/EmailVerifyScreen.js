@@ -47,7 +47,8 @@ export default function EmailVerifyScreen({ route, navigation }) {
       });
       await AsyncStorage.multiRemove(['latestAiResult']);
       await AsyncStorage.setItem('userToken', res.data.access_token);
-      navigation.navigate('Quiz');
+      if (email) await AsyncStorage.setItem('userEmail', email.trim());
+      navigation.navigate('Dashboard');
     } catch (err) {
       console.log('OTP Verify Error:', err);
       const detail = err.response?.data?.detail || 'Invalid code. Please try again.';

@@ -11,6 +11,7 @@ import EmailVerifyScreen from '../screens/EmailVerifyScreen';
 import QuizScreen from '../screens/QuizScreen';
 import CreativeScreen from '../screens/CreativeScreen';
 import EntryAcceptedScreen from '../screens/EntryAcceptedScreen';
+import ShortlistResultScreen from '../screens/ShortlistResultScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import ResultScreen from '../screens/ResultScreen';
 import QuizIncorrectScreen from '../screens/QuizIncorrectScreen';
@@ -63,6 +64,7 @@ export default function AppNavigator() {
         <Stack.Screen name="EmailVerify" component={EmailVerifyScreen} />
         <Stack.Screen name="Quiz" component={QuizScreen} />
         <Stack.Screen name="Creative" component={CreativeScreen} />
+        <Stack.Screen name="ShortlistResult" component={ShortlistResultScreen} />
         <Stack.Screen name="EntryAccepted" component={EntryAcceptedScreen} />
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
         <Stack.Screen name="Result" component={ResultScreen} />

@@ -34,6 +34,21 @@ class Response(Base):
     impact = Column(Float, default=0)
     total_score = Column(Float, default=0)
 
+
+class CreativeSubmission(Base):
+    """Append-only snapshot each time the user submits/rescores a creative pitch."""
+    __tablename__ = "creative_submissions"
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), index=True)
+    content = Column(String)
+    relevance = Column(Float, default=0)
+    creativity = Column(Float, default=0)
+    clarity = Column(Float, default=0)
+    impact = Column(Float, default=0)
+    total_score = Column(Float, default=0)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+
 class EvaluationAudit(Base):
     __tablename__ = "evaluation_audits"
     id = Column(Integer, primary_key=True, index=True)

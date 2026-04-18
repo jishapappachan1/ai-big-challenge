@@ -63,9 +63,8 @@ export default function RegisterScreen({ navigation }) {
         if (res.status === 200) {
           await AsyncStorage.removeItem('latestAiResult');
           await AsyncStorage.setItem('userToken', res.data.access_token);
-          // Login response decides if user should reattempt quiz or go to dashboard.
-          const nextScreen = res.data?.next_screen === 'Quiz' ? 'Quiz' : 'Dashboard';
-          navigation.navigate(nextScreen);
+          await AsyncStorage.setItem('userEmail', email.trim());
+          navigation.navigate('Dashboard');
         }
       } else {
         const res = await axios.post(`${API_BASE}/signup`, { email: email.trim(), password: password.trim() });

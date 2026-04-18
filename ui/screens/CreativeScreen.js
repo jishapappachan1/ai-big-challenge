@@ -36,7 +36,25 @@ export default function CreativeScreen({ navigation }) {
         headers: { Authorization: `Bearer ${token}` }
       });
       await AsyncStorage.setItem('latestAiResult', JSON.stringify(res.data.scores));
-      navigation.navigate('EntryAccepted');
+      let rank;
+      let totalEntries;
+      try {
+        const summary = await axios.get(`${API_BASE}/my-creative-result`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (summary.data?.submitted) {
+          rank = summary.data.rank;
+          totalEntries = summary.data.total_entries;
+        }
+      } catch {
+        /* still show result screen */
+      }
+      navigation.navigate('ShortlistResult', {
+        scores: res.data.scores,
+        responseText: response.trim(),
+        rank,
+        totalEntries,
+      });
     } catch (e) {
       console.log("Creative Submit Error:", e);
       const detail = e.response?.data?.detail || "Submission failed. Please try again.";
